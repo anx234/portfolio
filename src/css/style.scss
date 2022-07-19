@@ -1,0 +1,74 @@
+@use "ress" as reset;
+
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	overflow: auto !important;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size:  1.8rem;
+	font-weight: 500;
+	color: #fff;
+	line-height: 1.8;
+	letter-spacing: 0.01em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	overflow-wrap: break-word;
+	min-height: 100vh;
+	min-height: -webkit-fill-available;
+	background: #000000;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	
+
+}
+h2,h3,h4,h5{
+    font-weight: normal;
+}
+h2 {
+	margin: 0;
+	font-size: 3.2rem;
+}
+
+h3 {
+	font-size: 1.8rem;
+}
+
+li {
+	list-style: none;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+    vertical-align: bottom;
+}
+
+em {
+	font-style: initial;
+}
+button:focus {
+	outline:0;
+}
+
+address{
+	font-style: normal;
+}
+
+/*---------------------------------
+  コメント
+---------------------------------*/
