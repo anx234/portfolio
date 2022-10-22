@@ -59,20 +59,14 @@ export default class Camera
         this.modes.debug.orbitControls.update()
     }
 
-
-    resize()
-    {
-        this.instance.aspect = this.config.width / this.config.height
-        this.instance.updateProjectionMatrix()
-
-        this.modes.default.instance.aspect = this.config.width / this.config.height
-        this.modes.default.instance.updateProjectionMatrix()
-
-        this.modes.debug.instance.aspect = this.config.width / this.config.height
-        this.modes.debug.instance.updateProjectionMatrix()
-    }
-
     gsap(){
+        var tl = gsap.timeline()
+        tl.from(this.modes[this.mode].instance.position, {
+            z: 6,
+            ease: 'Power2.out',
+            duration: 2,
+      })
+
         gsap.registerPlugin(ScrollTrigger);
         ScrollTrigger.defaults({
             scrub: 3,
@@ -84,17 +78,35 @@ export default class Camera
             // onLeaveBack: () => console.log('leave back'),
         })
         const sections = document.querySelectorAll('.gsap_section')
-        gsap.from(this.instance.position, {
-            y: 1,
-            duration: 1,
+        
+        gsap.from(this.modes[this.mode].instance.position, {
+            z: 5,
             ease: 'expo',
         })
-        gsap.from(this.instance.position, {
-            y: 10,
+        gsap.to(this.modes[this.mode].instance.position, {
+            z: 4,
+            ease: 'Power2.out',
+            duration: 8,
             scrollTrigger: {
-                trigger: sections[1],
+                trigger: sections[4],
             },
-        });
+        })
+    }
+
+    resize()
+    {
+        const width = window.innerWidth;
+        const height = window.innerHeight; 
+        this.instance.aspect =width / height;
+        this.instance.updateProjectionMatrix()
+        // this.instance.aspect = this.config.width / this.config.height
+        // this.instance.updateProjectionMatrix()
+
+        // this.modes.default.instance.aspect = this.config.width / this.config.height
+        // this.modes.default.instance.updateProjectionMatrix()
+
+        // this.modes.debug.instance.aspect = this.config.width / this.config.height
+        // this.modes.debug.instance.updateProjectionMatrix()
     }
 
     update()

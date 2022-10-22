@@ -27,7 +27,7 @@ export default class Renderer
 
     setInstance()
     {
-        this.clearColor = '#151515'
+        this.clearColor = '#010101'
 
         // Renderer
         this.instance = new THREE.WebGLRenderer({
@@ -41,7 +41,7 @@ export default class Renderer
         this.instance.domElement.style.height = '100%'
 
         // this.instance.setClearColor(0x414141, 1)
-        //this.instance.setClearColor(this.clearColor, 1)
+       // this.instance.setClearColor(this.clearColor, 1)
         this.instance.setSize(this.config.width, this.config.height)
         this.instance.setPixelRatio(this.config.pixelRatio)
 
@@ -107,8 +107,16 @@ export default class Renderer
     resize()
     {
         // Instance
-        this.instance.setSize(this.config.width, this.config.height)
-        this.instance.setPixelRatio(this.config.pixelRatio)
+        // this.instance.setSize(this.config.width, this.config.height)
+        // this.instance.setPixelRatio(this.config.pixelRatio)
+
+          // サイズを取得
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  // レンダラーのサイズを調整する
+  this.instance.setPixelRatio(window.devicePixelRatio);
+  this.instance.setSize(width, height);
 
         // Post process
         this.postProcess.composer.setSize(this.config.width, this.config.height)

@@ -105,9 +105,10 @@ export default class Sphere
         })
         gsap.to(this.params, {
             // Freaquency: 0.1,
-            // Twist: 0.0,
-            // Size: 0.6,
-            // Freaquency: 0.4,
+             Twist: 0.0,
+            Size: 0.8,
+            Freaquency: 0.8,
+            // reaquency: 0.4,
             ease: 'Power2.out',
             duration: 8,
             scrollTrigger: {
@@ -115,16 +116,23 @@ export default class Sphere
             },
         })
         gsap.to(this.params, {
-            radius: 0,
             duration: 8,
+            // Freaquency: 0.8,
             ease: 'Power2.out',
             scrollTrigger: {
                 trigger: sections[2],
             },
         })
         gsap.to(this.params, {
+
+            ease: 'Power2.out',
+            scrollTrigger: {
+                trigger: sections[3],
+            },
+        })
+        gsap.to(this.params, {
             duration: 8,
-            // Freaquency: 1.1,
+            //  Freaquency: 0.8,
             // Freaquency: 1.4,
             ease: 'Power2.out',
             scrollTrigger: {

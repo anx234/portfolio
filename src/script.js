@@ -12,29 +12,6 @@ import 'swiper/css/pagination';
 
 import "./css/style.css";
 
-// configure Swiper to use modules
-Swiper.use([Navigation, Pagination]);
-
-const swiper = new Swiper('.swiper', {
-  // Optional parameters
-  loop: true,
-
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
-
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-
-  // And if we need scrollbar
-  scrollbar: {
-    el: '.swiper-scrollbar',
-  },
-});
 
 
 
@@ -42,6 +19,8 @@ const application = new Application()
 
 
 gsap.registerPlugin(ScrollTrigger);
+
+/*
 const tl2 = gsap.timeline();
 
 tl2.from(".gsap_topLv1heading span", 1.8, {
@@ -53,56 +32,35 @@ tl2.from(".gsap_topLv1heading span", 1.8, {
     amount: 0.3
   }
 })
+*/
+
+const fvCover = document.getElementById('gsap_FVCover');
+const fv_tl = gsap.timeline();
+fv_tl.fromTo(fvCover, 1, { height: "100%" }, { height: "0vh", ease: Power2.easeInOut })
+  .fromTo(
+    fvCover,
+    1.2,
+    { width: "100%" },
+    { width: "0%", ease: Power2.easeInOut }
+  )
 
 
-document.querySelectorAll(".el_lv2heading").forEach((el) => {
 
-  let tl = gsap.timeline({
-    scrollTrigger: {
-    trigger: el,
-    start:"top 50%",  // start when top of trigger target hits 50% point of viewport
-    toggleActions:"restart none none reset",
-    end: "bottom center",
-    // markers:true
+
+var tl = gsap.timeline()
+tl.staggerFrom('.gsap_fadein', 1.5, {y:"100%", ease:Power4.easeOut}, 0.85)
+/*
+gsap.to(
+  '.gsap_fadein',
+  {
+    duration:1,
+    opacity:1,
+    y:'0px',
+    stagger:{
+      each:0.5,
     }
-  });
-  tl.from(el, {
-      duration: 1,
-      scaleX: 0,
-      transformOrigin: "left",
-      ease: "expo.inOut"
-    })
-    .from(
-      el,
-      {
-        // y: "100%",
-        duration: 0.8,
-        ease: "expo.out"
-      },
-      "-=0.2"
-    )
-    .from(
-      el,
-      {
-        // css: { borderBottom: "2px solid black" },
-        duration: 2,
-        transformOrigin: "right",
-        ease: "none"
-      },
-      "-=1"
-    )
-    .from(
-      el,
-      {
-        duration: 2,
-        transformOrigin: "right",
-        ease: "none",
-        css: { color: "black" }
-      },
-      "-=2"
-    );
-
-});
+  }
+)*/
 
 /*
 const el_lv2headingTl = gsap.timeline({
@@ -191,3 +149,83 @@ fadeUps.forEach((fadeUp, index) => {
   });
 })
 */
+
+const area  = document.querySelector(".js-area");
+const wrap  = document.querySelector(".js-wrap");
+const items = document.querySelectorAll(".js-item");
+const num   = items.length;
+
+//横幅を指定
+gsap.set(wrap,  { width: num * 100 + "%" });
+gsap.set(items, { width: 100 / num + "%" });
+
+gsap.to(items, {
+  xPercent: -100 * ( num - 1 ), //x方向に移動させる
+  ease: "none",
+  scrollTrigger: {
+    trigger: area, //トリガー
+    start: "top top",
+    end: "+=100%",
+    pin: true, //ピン留め
+    scrub: true, //スクロール量に応じて動かす
+  }
+});
+
+
+
+document.querySelectorAll(".el_lv2heading").forEach((el) => {
+
+  let tl = gsap.timeline({
+    scrollTrigger: {
+    trigger: el,
+    start:"top 50%",  // start when top of trigger target hits 50% point of viewport
+    toggleActions:"restart none none reset",
+    end: "bottom center",
+    // markers:true
+    }
+  });
+  tl.from(el, {
+      duration: 3,
+      opacity: 0,
+      transformOrigin: "bottom",
+      ease: "expo.inOut"
+    })
+    .from(
+      el,
+      {
+        // y: "100%",
+        duration: 0.8,
+        ease: "expo.out"
+      },
+      "-=0.2"
+    )
+    .from(
+      el,
+      {
+         css: { borderBottom: "2px solid black" },
+        duration: 2,
+        transformOrigin: "rigtopht",
+        ease: "none"
+      },
+      "-=1"
+    )
+    .from(
+      el,
+      {
+        duration: 2,
+        transformOrigin: "top",
+        ease: "none",
+        css: { color: "white" }
+      },
+      "-=2"
+    );
+
+});
+
+
+
+// const stalker = document.getElementById('js_stalker'); 
+
+// document.addEventListener('mousemove', function (e) {
+//     stalker.style.transform = 'translate(' + e.clientX + 'px, ' + e.clientY + 'px)';
+// });

@@ -14,54 +14,24 @@ export default class World
         {
             if(_group.name === 'base')
             {
-              // this.setGradient()
-              // this.setSmoke()
-               // this.setVignette()
-               // this.setParticles()
+ 
               this.setSphere()
             }
         })
     }
 
-    setGradient()
-    {
-        this.gradient = new Gradient()
-    }
-
-    setSmoke()
-    {
-        this.smoke = new Smoke()
-    }
-
-    setParticles()
-    {
-        this.particles = new Particles()
-    }
-
-    setVignette()
-    {
-        this.vignette = new Vignette()
-    }
     setSphere()
     {
         this.sphere = new Sphere()
     }
     resize()
     {
-
+        if(this.sphere)
+        this.sphere.update()
     }
 
     update()
     {
-        
-        // if(this.gradient)
-        //     this.gradient.update()
-
-        // if(this.smoke)
-        //     this.smoke.update()
-
-        // if(this.particles)
-        //     this.particles.update()
             
             if(this.sphere)
             this.sphere.update()
